@@ -22,7 +22,7 @@ const circleArea = (r) => Math.pow(r, 2) * Math.PI;
 // defined) in order to make the tests pass.
 // ========================================================
 
-const shoppingCart = [];
+let shoppingCart = [];
 
 const clearCart = () => {
     shoppingCart.length = 0;
@@ -36,13 +36,15 @@ const createItem = (name, price) => {
 const getShoppingCart = () => shoppingCart;
 
 // should add item to shopping cart
-const addItemToCart = (item) => shoppingCart.append(item);
+const addItemToCart = (item) => shoppingCart.push(item);
 
 // should return the total quantity of items in cart
 const getNumItemsInCart = () => shoppingCart.length;
 
 // should remove item from shopping cart
-const removeItemFromCart = (item) => shoppingCart.filter((cartItem) => cartItem != item);
+const removeItemFromCart = (item) => {
+    shoppingCart = shoppingCart.filter((cartItem) => cartItem.name != item.name);
+};
 
 module.exports = {
     sayHello,

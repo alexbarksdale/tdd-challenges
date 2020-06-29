@@ -62,13 +62,53 @@ it('Should create a new (object) Item with name and price', function () {
     expect(item).to.have.property('quantity', 1);
 });
 
-it('Should return an array containing all items in cart');
+it('Should return an array containing all items in cart', function () {
+    const item = utils.createItem('pizza', 5);
+    utils.addItemToCart(item);
 
-it('Should add a new item to the shopping cart');
+    const item2 = utils.createItem('apple', 1);
+    utils.addItemToCart(item2);
 
-it('Should return the number of items in the cart');
+    const items = utils.getShoppingCart();
+    expect(items[0]).to.be.a('object');
+    expect(items[0]).to.have.property('name', 'pizza');
+    expect(items[1]).to.be.a('object');
+    expect(items[1]).to.have.property('name', 'apple');
+});
 
-it('Should remove items from cart');
+it('Should add a new item to the shopping cart', function () {
+    const item = utils.createItem('pizza', 5);
+    utils.addItemToCart(item);
+
+    expect(utils.getShoppingCart()[0]).to.have.property('name', 'pizza');
+});
+
+it('Should return the number of items in the cart', function () {
+    const item = utils.createItem('pizza', 5);
+    utils.addItemToCart(item);
+
+    expect(utils.getNumItemsInCart()).to.equal(1);
+});
+
+it('Should remove items from cart', function () {
+    const item = utils.createItem('pizza', 5);
+    utils.addItemToCart(item);
+    expect(utils.getNumItemsInCart()).to.equal(1);
+
+    // Clear cart method
+    utils.clearCart();
+    expect(utils.getNumItemsInCart()).to.equal(0);
+
+    const item2 = utils.createItem('cheese', 3);
+    utils.addItemToCart(item2);
+    const item3 = utils.createItem('apple', 1);
+    utils.addItemToCart(item3);
+    expect(utils.getNumItemsInCart()).to.equal(2);
+
+    // Remove specific item method
+    utils.removeItemFromCart(item2);
+    expect(utils.getNumItemsInCart()).to.equal(1);
+});
 
 // ========================================================
 // Stretch Challenges
