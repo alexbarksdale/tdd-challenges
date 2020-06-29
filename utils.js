@@ -43,7 +43,7 @@ const getNumItemsInCart = () => shoppingCart.length;
 
 // should remove item from shopping cart
 const removeItemFromCart = (item) => {
-    shoppingCart = shoppingCart.filter((cartItem) => cartItem.name != item.name);
+    shoppingCart = shoppingCart.filter((cartItem) => cartItem.name !== item.name);
 };
 
 module.exports = {
